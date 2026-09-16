@@ -1,0 +1,28 @@
+{
+  "fetchedAt": "2026-09-15T22:08:07.687Z",
+  "fetchedAtMs": 1789510087687,
+  "seconds": 0.1,
+  "rows": 2374,
+  "significant": 8,
+  "source": "United States Geological Survey earthquake feeds",
+  "sourceUrl": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php",
+  "licence": "USGS data are in the public domain.",
+  "feeds": [
+    {
+      "name": "week",
+      "title": "USGS All Earthquakes, Past Week",
+      "generated": 1789510079000,
+      "generatedAt": "2026-09-15T22:07:59.000Z",
+      "count": 2367
+    },
+    {
+      "name": "significant",
+      "title": "USGS Significant Earthquakes, Past Month",
+      "generated": 1789510039000,
+      "generatedAt": "2026-09-15T22:07:19.000Z",
+      "count": 8
+    }
+  ],
+  "oldest": "2026-08-20T18:00:18.619Z",
+  "newest": "2026-09-15T21:35:37.827Z"
+}

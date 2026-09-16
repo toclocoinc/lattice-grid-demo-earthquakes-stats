@@ -1,0 +1,20 @@
+{
+  "name": "lattice-grid-demo-earthquakes-stats",
+  "version": "1.0.0",
+  "description": "The statistics edition of the earthquake dashboard: the b-value, inter-arrival gaps, aftershock decay, depth by region and a daily control chart, all computed by the grid.",
+  "type": "module",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "start": "node tools/serve.mjs",
+    "snapshot": "node tools/build-snapshot.mjs",
+    "preview": "node tools/build-preview.mjs",
+    "verify": "node tools/verify.mjs"
+  },
+  "dependencies": {
+    "@toclocoinc/lattice-grid": "^1.62.0"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
