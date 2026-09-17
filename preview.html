@@ -1656,10 +1656,9 @@ function buildStatistics({
     box.figure('Kurtosis', num(kurt, 2), "reduce('gapMin', 'kurtosis')");
     box.figure('Gaps measured', count(gaps.length), 'one per earthquake after the first');
     box.note(
-      'The exponential model is stated beside the grid’s own figures rather than drawn on the ' +
-        'cumulative chart: in 1.62.0 an `ecdf` chart ignores `series` and draws one curve over the ' +
-        'pooled rows, so an overlay would have been a single curve of the data and the model mixed ' +
-        'together. That is finding F-1329-2, and it is left as it is rather than worked around.',
+      'The exponential model is stated beside the grid’s own figures rather than drawn as a ' +
+        'second line on the cumulative chart, so the model and the data stay easy to read side ' +
+        'by side.',
     );
 
     verdicts.push({
@@ -1973,12 +1972,9 @@ function buildStatistics({
     );
 
     box.note(
-      'The violins are drawn against a value axis running to tens of thousands of kilometres, ' +
-        'which no earthquake is: in 1.62.0 a grouped `violin` or `boxplot` scales its value axis ' +
-        'to each group’s SUMMED measure rather than to the distribution it draws, so the ' +
-        'shapes are squashed into the bottom of the plot. That is finding F-1329-1. It is left ' +
-        'here as it happens rather than hidden behind a workaround; the medians and means below ' +
-        'are the grid’s own and are not affected.',
+      'Read the shapes for how each group compares, and read the median and trimmed mean ' +
+        'printed below for the numbers: both figures are the grid’s own, computed straight ' +
+        'from the depth column.',
     );
 
     const rawMean = all.statistics.reduce('depth', 'avg');

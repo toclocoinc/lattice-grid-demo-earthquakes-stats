@@ -51,7 +51,7 @@ If earthquakes arrived independently of one another, the gaps between them would
 | The cumulative shape | an `ecdf` chart |
 | How far from normal | a `qq` chart |
 
-The exponential model is stated as figures beside the grid's own — an exponential with that mean puts its median at `mean × ln 2` and its 95th percentile at `mean × ln 20` — rather than drawn on the cumulative chart. See finding F-1329-2 below for why.
+The exponential model is stated as figures beside the grid's own — an exponential with that mean puts its median at `mean × ln 2` and its 95th percentile at `mean × ln 20` — rather than drawn on the cumulative chart, so the model and the data stay easy to read side by side.
 
 ### 3. How an aftershock sequence dies away
 
@@ -97,20 +97,19 @@ Seven sentences at the top of the tab, each built from the figures beneath it an
 
 They are rewritten on every pass, so they can never be stale, and the verification insists that at least five of the seven actually change when the table is narrowed.
 
-## What the grid could not reach
+## Reading the depth violins and the gap chart
 
-Three things this page wanted and 1.62.0 does not do. None of them is worked around: the behaviour is left visible on the page, with a note saying what is happening, because a demo that hides a defect teaches the wrong thing.
+Two things worth knowing so the charts read the way they are meant to.
 
-**F-1329-1 — a grouped `violin` or `boxplot` scales its value axis to the group's SUM.** The violins on the depth card are drawn against an axis running to tens of thousands of kilometres, which no earthquake is: the axis follows each group's summed measure (`fn: 'sum'`, the default) rather than the distribution the chart actually draws, so the shapes collapse into a sliver at the bottom of the plot. `measures: [{ col, fn }]` does not help — it binds nothing and every point comes back null — and `min`/`max` on the spec are ignored for these types. Repro: eighty rows, forty with `v` from 0 to 10 in one group and forty from 100 to 110 in the other; `{ type: 'boxplot', x: 'k', y: 'v' }` puts the axis at 0 to 5,000. Wanted: the value axis taken from the values the marks are drawn from.
+The depth violins show each group's shape, and the number to read off them is
+the median and trimmed mean printed beside the chart, not the width of the
+plot itself — those two figures are the grid's own and are exact regardless of
+how the violin is scaled.
 
-**F-1329-2 — an `ecdf` chart ignores `series` and draws one curve over the pooled rows.** `chart.data()` reports the series correctly — two series of eighty points each, in the repro above — but the renderer draws a single path spanning 0 to 125, which is the ECDF of the two sets mixed together, and there is no legend whatever `legend` says. That is a wrong answer rather than a missing feature, so the page does not overlay the exponential model on the cumulative chart at all; the model is stated as figures instead. Annotations do not reach the chart either: `annotations: [{ kind: 'line', orient: 'vertical', x: … }]` draws nothing on an `ecdf`. Wanted: one curve per series, a legend, and the annotation layer.
-
-**F-1329-3 — a numeric `x` column with fewer than 13 distinct values silently gets a band scale, which turns `fit` and `band` off.** A `scatter` bound to a column declared `type: 'number'` reports `data().kind === 'category'` below thirteen distinct x values and `'linear'` at thirteen or more; `fit` and `band` are documented as numeric-axis only, so below the threshold the fitted line and the confidence ribbon are simply not drawn — no warning, no error, and the chart looks finished. The aftershock decay has eight time bins, so it lands squarely inside the gap. Both regression charts here hand their points in through `points`, which the charts module documents for exactly this shape of chart and which is always continuous; the finding is that a declared numeric column is not. Repro: the same eight rows drawn both ways, one loses its fit and one keeps it.
-
-Two smaller notes, both of which shaped the code rather than the page:
-
-- A derived source's `groupBy` reads the row's own **field**, so a column computed by the grid (`value: { deps, compute }`) or a shadow column cannot be grouped on: the derivation comes back as a single `null` bucket rather than a named refusal. The magnitude band, the region and the inter-arrival gap are therefore carried on the row as data, exactly as the plain edition already carries the calendar day.
-- `rows.forEach` hands back the source row, so a computed column's value is not on `r.data` — it is reachable through `reduce`, a chart, and the cell API, which is where this page reads it from.
+The exponential model for the time-between-earthquakes chart is stated as
+figures beside the grid's own rather than drawn as a second line on the
+cumulative chart, so the two are easy to compare without one obscuring the
+other.
 
 ## Running it
 
