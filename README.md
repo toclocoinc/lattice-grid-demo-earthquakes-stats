@@ -186,3 +186,6 @@ The code in this repository is available under the MIT licence. See [LICENSE](LI
 Lattice Grid itself is a separate commercial product with its own terms. It is free to use on localhost, with no key and no watermark, so a copy of this repository runs unrestricted on your own machine. This demo carries a key for its own published address only, which is why you will find one in the source. Keys for your own sites come from [latticegrid.dev](https://www.latticegrid.dev).
 
 The earthquake data comes from the [United States Geological Survey earthquake feeds](https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php). USGS data are in the public domain and free to use.
+
+---
+Built with [Lattice Grid](https://www.latticegrid.dev), a JavaScript data grid with a Data Router: one live feed keeps grids, charts, boards, Gantt and KPI tiles in step. [Documentation](https://www.latticegrid.dev/docs/) · [Demos](https://www.latticegrid.dev/demos/) · [Licence](https://www.latticegrid.dev/licence/)
