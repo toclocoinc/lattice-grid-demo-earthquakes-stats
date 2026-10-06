@@ -1029,6 +1029,11 @@ export function buildDashboard({
     ),
   );
   footer.append(line);
+  const builtWith = el('p', null, 'Built with ');
+  const builtWithLink = el('a', null, 'Lattice Grid');
+  builtWithLink.href = 'https://www.latticegrid.dev/statistics/';
+  builtWith.append(builtWithLink);
+  footer.append(builtWith);
   root.append(footer);
 
   built.destroy = () => {
