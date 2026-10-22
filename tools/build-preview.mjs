@@ -22,7 +22,7 @@ const pkgDir = join(root, 'node_modules', '@toclocoinc', 'lattice-grid');
 
 const installed = JSON.parse(await readFile(join(pkgDir, 'package.json'), 'utf8'));
 const VERSION = installed.version;
-const CDN = `https://cdn.jsdelivr.net/npm/@toclocoinc/lattice-grid@${VERSION}`;
+const CDN = `https://cdn.latticegrid.dev/lattice-grid@${VERSION}`;
 
 /** The library files the preview loads, as paths inside the package. */
 const CDN_FILES = [
